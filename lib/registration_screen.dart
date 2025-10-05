@@ -11,6 +11,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   String _email = '';
   String _password = '';
   String _confirmPassword = '';
+  String? _role; // Nullable for dropdown selection
 
   @override
   Widget build(BuildContext context) {
@@ -105,12 +106,39 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 },
               ),
               SizedBox(height: 16.0),
+              DropdownButtonFormField<String>(
+                decoration: InputDecoration(
+                  labelText: 'Role',
+                  border: OutlineInputBorder(),
+                  filled: true,
+                  fillColor: Colors.white,
+                ),
+                value: _role,
+                items: ['Admin', 'Customer'].map((String role) {
+                  return DropdownMenuItem<String>(
+                    value: role,
+                    child: Text(role),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  setState(() {
+                    _role = value;
+                  });
+                },
+                validator: (value) {
+                  if (value == null) {
+                    return 'Please select a role';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Registered: $_name, $_email')),
+                      SnackBar(content: Text('Registered: $_name, $_email, Role: $_role')),
                     );
                   }
                 },
