@@ -4,6 +4,7 @@ import 'customization_screen.dart';
 import 'registration_screen.dart';
 import 'order_form_screen.dart';
 import 'welcome_screen.dart';
+import 'tabbed_order_screen.dart';
 
 void main() {
   runApp(JewelForm());
@@ -203,6 +204,19 @@ class HomeScreen extends StatelessWidget {
                 );
               },
               child: Text('Order Form'),
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+              ),
+            ),
+            SizedBox(height: 16.0),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => TabbedOrderScreen()),
+                );
+              },
+              child: Text('Manage Orders'),
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
               ),
