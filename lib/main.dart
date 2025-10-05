@@ -5,6 +5,8 @@ import 'registration_screen.dart';
 import 'order_form_screen.dart';
 import 'welcome_screen.dart';
 import 'tabbed_order_screen.dart';
+import 'about_screen.dart';
+import 'contact_screen.dart';
 
 void main() {
   runApp(JewelForm());
@@ -19,7 +21,12 @@ class JewelForm extends StatelessWidget {
         primarySwatch: Colors.blueGrey,
         scaffoldBackgroundColor: Colors.grey[100],
       ),
-      home: MainScreen(),
+      initialRoute: '/home',
+      routes: {
+        '/home': (context) => MainScreen(),
+        '/about': (context) => AboutScreen(),
+        '/contact': (context) => ContactScreen(),
+      },
     );
   }
 }
@@ -128,6 +135,20 @@ class HomeScreen extends StatelessWidget {
                 );
               },
             ),
+            ListTile(
+              title: Text('About'),
+              onTap: () {
+                Navigator.pop(context); // Close drawer
+                Navigator.pushNamed(context, '/about');
+              },
+            ),
+            ListTile(
+              title: Text('Contact'),
+              onTap: () {
+                Navigator.pop(context); // Close drawer
+                Navigator.pushNamed(context, '/contact');
+              },
+            ),
           ],
         ),
       ),
@@ -221,6 +242,26 @@ class HomeScreen extends StatelessWidget {
                 );
               },
               child: Text('Manage Orders'),
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+              ),
+            ),
+            SizedBox(height: 16.0),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/about');
+              },
+              child: Text('About'),
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+              ),
+            ),
+            SizedBox(height: 16.0),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/contact');
+              },
+              child: Text('Contact'),
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
               ),

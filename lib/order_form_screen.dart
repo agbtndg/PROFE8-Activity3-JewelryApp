@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'welcome_screen.dart';
 import 'main.dart';
+import 'about_screen.dart';
+import 'contact_screen.dart';
 
 class OrderFormScreen extends StatefulWidget {
   @override
@@ -71,6 +73,20 @@ class _OrderFormScreenState extends State<OrderFormScreen> {
                   context,
                   MaterialPageRoute(builder: (context) => OrderFormScreen()),
                 );
+              },
+            ),
+            ListTile(
+              title: Text('About'),
+              onTap: () {
+                Navigator.pop(context); // Close drawer
+                Navigator.pushNamed(context, '/about');
+              },
+            ),
+            ListTile(
+              title: Text('Contact'),
+              onTap: () {
+                Navigator.pop(context); // Close drawer
+                Navigator.pushNamed(context, '/contact');
               },
             ),
           ],
