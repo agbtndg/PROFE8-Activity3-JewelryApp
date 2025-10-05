@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'customization_screen.dart';
+import 'registration_screen.dart';
 
 void main() {
   runApp(JewelForm());
@@ -66,6 +67,19 @@ class HomeScreen extends StatelessWidget {
                 );
               },
               child: Text('Customize Jewelry'),
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+              ),
+            ),
+            SizedBox(height: 16.0),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => RegistrationScreen()),
+                );
+              },
+              child: Text('Register'),
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
               ),
