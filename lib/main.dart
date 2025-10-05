@@ -98,7 +98,13 @@ class UsernameFormScreen extends StatefulWidget {
 
 class _UsernameFormScreenState extends State<UsernameFormScreen> {
   final _formKey = GlobalKey<FormState>();
-  String _username = '';
+  final _usernameController = TextEditingController();
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -115,17 +121,13 @@ class _UsernameFormScreenState extends State<UsernameFormScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               TextFormField(
+                controller: _usernameController,
                 decoration: InputDecoration(
                   labelText: 'Username',
                   border: OutlineInputBorder(),
                   filled: true,
                   fillColor: Colors.white,
                 ),
-                onChanged: (value) {
-                  setState(() {
-                    _username = value;
-                  });
-                },
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter a username';
@@ -137,9 +139,9 @@ class _UsernameFormScreenState extends State<UsernameFormScreen> {
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    _formKey.currentState!.save();
+                    String username = _usernameController.text;
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Username submitted: $_username')),
+                      SnackBar(content: Text('Username submitted: $username')),
                     );
                   }
                 },
