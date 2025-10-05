@@ -10,8 +10,8 @@ class JewelForm extends StatelessWidget {
     return MaterialApp(
       title: 'JewelForm',
       theme: ThemeData(
-        primarySwatch: Colors.blueGrey, // Modern, neutral color
-        scaffoldBackgroundColor: Colors.grey[100], // Clean background
+        primarySwatch: Colors.blueGrey,
+        scaffoldBackgroundColor: Colors.grey[100],
       ),
       home: UsernameFormScreen(),
     );
@@ -32,10 +32,10 @@ class _UsernameFormScreenState extends State<UsernameFormScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Enter Username'),
-        centerTitle: true, // Modern, centered title
+        centerTitle: true,
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0), // Simple padding for clean layout
+        padding: EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
           child: Column(
@@ -44,7 +44,7 @@ class _UsernameFormScreenState extends State<UsernameFormScreen> {
               TextFormField(
                 decoration: InputDecoration(
                   labelText: 'Username',
-                  border: OutlineInputBorder(), // Modern input style
+                  border: OutlineInputBorder(),
                   filled: true,
                   fillColor: Colors.white,
                 ),
@@ -60,7 +60,7 @@ class _UsernameFormScreenState extends State<UsernameFormScreen> {
                   return null;
                 },
               ),
-              SizedBox(height: 16.0), // Spacing for clarity
+              SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
@@ -71,7 +71,7 @@ class _UsernameFormScreenState extends State<UsernameFormScreen> {
                 },
                 child: Text('Submit'),
                 style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(vertical: 12.0), // Modern button size
+                  padding: EdgeInsets.symmetric(vertical: 12.0),
                 ),
               ),
             ],
