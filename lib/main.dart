@@ -24,8 +24,9 @@ class JewelForm extends StatelessWidget {
         primarySwatch: Colors.blueGrey,
         scaffoldBackgroundColor: Colors.grey[100],
       ),
-      initialRoute: '/home',
+      initialRoute: '/login',
       routes: {
+        '/login': (context) => LoginScreen(),
         '/home': (context) => MainScreen(),
         '/about': (context) => AboutScreen(),
         '/contact': (context) => ContactScreen(),
