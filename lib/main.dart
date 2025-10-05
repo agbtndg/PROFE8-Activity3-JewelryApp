@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'login_screen.dart'; // Import the new login screen
+import 'login_screen.dart';
 
 void main() {
   runApp(JewelForm());
@@ -109,8 +109,9 @@ class _UsernameFormScreenState extends State<UsernameFormScreen> {
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
+                    _formKey.currentState!.save();
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Username: $_username')),
+                      SnackBar(content: Text('Username submitted: $_username')),
                     );
                   }
                 },

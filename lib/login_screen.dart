@@ -32,10 +32,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   fillColor: Colors.white,
                 ),
                 keyboardType: TextInputType.emailAddress,
-                onChanged: (value) {
-                  setState(() {
-                    _email = value;
-                  });
+                onSaved: (value) {
+                  _email = value ?? '';
                 },
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -55,10 +53,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   fillColor: Colors.white,
                 ),
                 obscureText: true,
-                onChanged: (value) {
-                  setState(() {
-                    _password = value;
-                  });
+                onSaved: (value) {
+                  _password = value ?? '';
                 },
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -71,8 +67,9 @@ class _LoginScreenState extends State<LoginScreen> {
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
+                    _formKey.currentState!.save();
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Email: $_email, Password: $_password')),
+                      SnackBar(content: Text('Login submitted: $_email')),
                     );
                   }
                 },
