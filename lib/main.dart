@@ -7,6 +7,8 @@ import 'welcome_screen.dart';
 import 'tabbed_order_screen.dart';
 import 'about_screen.dart';
 import 'contact_screen.dart';
+import 'demo_push_screen.dart';
+import 'demo_push_replacement_screen.dart';
 
 void main() {
   runApp(JewelForm());
@@ -26,6 +28,8 @@ class JewelForm extends StatelessWidget {
         '/home': (context) => MainScreen(),
         '/about': (context) => AboutScreen(),
         '/contact': (context) => ContactScreen(),
+        '/demo_push': (context) => DemoPushScreen(),
+        '/demo_push_replacement': (context) => DemoPushReplacementScreen(),
       },
     );
   }
@@ -262,6 +266,26 @@ class HomeScreen extends StatelessWidget {
                 Navigator.pushNamed(context, '/contact');
               },
               child: Text('Contact'),
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+              ),
+            ),
+            SizedBox(height: 16.0),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/demo_push');
+              },
+              child: Text('Demo Push'),
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+              ),
+            ),
+            SizedBox(height: 16.0),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/demo_push_replacement');
+              },
+              child: Text('Demo Push Replacement'),
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
               ),
