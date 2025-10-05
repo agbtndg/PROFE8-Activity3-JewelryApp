@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'welcome_screen.dart';
+import 'main.dart';
 
 class OrderFormScreen extends StatefulWidget {
   @override
@@ -24,6 +26,55 @@ class _OrderFormScreenState extends State<OrderFormScreen> {
       appBar: AppBar(
         title: Text('Order Jewelry'),
         centerTitle: true,
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blueGrey,
+              ),
+              child: Text(
+                'JewelForm Menu',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('Welcome'),
+              onTap: () {
+                Navigator.pop(context); // Close drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => WelcomeScreen()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Username Form'),
+              onTap: () {
+                Navigator.pop(context); // Close drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => UsernameFormScreen()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Order Form'),
+              onTap: () {
+                Navigator.pop(context); // Close drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => OrderFormScreen()),
+                );
+              },
+            ),
+          ],
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
