@@ -50,20 +50,24 @@ class _MainScreenState extends State<MainScreen> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home, size: 30.0),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: Icon(Icons.person, size: 30.0),
             label: 'Profile',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
+            icon: Icon(Icons.shopping_cart, size: 30.0),
             label: 'Orders',
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blueGrey[700],
+        selectedItemColor: Colors.blueGrey[800],
+        unselectedItemColor: Colors.blueGrey[300],
+        iconSize: 30.0,
+        selectedFontSize: 14.0,
+        unselectedFontSize: 12.0,
         onTap: _onItemTapped,
       ),
     );
