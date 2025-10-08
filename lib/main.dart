@@ -274,6 +274,21 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 16.0),
+                child: Image.asset(
+                  'assets/images/jewelry_logo.png',
+                  width: 200,
+                  height: 200,
+                  fit: BoxFit.contain,
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.white.withOpacity(0.9)
+                      : null,
+                  colorBlendMode: Theme.of(context).brightness == Brightness.dark
+                      ? BlendMode.modulate
+                      : null,
+                ),
+              ),
               Consumer<ThemeProvider>(
                 builder: (context, themeProvider, child) {
                   return ElevatedButton(
