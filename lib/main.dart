@@ -276,17 +276,32 @@ class HomeScreen extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 16.0),
-                child: Image.asset(
-                  'assets/images/jewelry_logo.png',
+                child: Container(
                   width: 200,
                   height: 200,
-                  fit: BoxFit.contain,
-                  color: Theme.of(context).brightness == Brightness.dark
-                      ? Colors.white.withOpacity(0.9)
-                      : null,
-                  colorBlendMode: Theme.of(context).brightness == Brightness.dark
-                      ? BlendMode.modulate
-                      : null,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.white70
+                          : Colors.blueGrey[800]!,
+                      width: 2.0,
+                    ),
+                  ),
+                  child: ClipOval(
+                    child: Image.asset(
+                      'assets/images/jewelry_logo.png',
+                      width: 200,
+                      height: 200,
+                      fit: BoxFit.cover,
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.white.withOpacity(0.9)
+                          : null,
+                      colorBlendMode: Theme.of(context).brightness == Brightness.dark
+                          ? BlendMode.modulate
+                          : null,
+                    ),
+                  ),
                 ),
               ),
               Consumer<ThemeProvider>(
