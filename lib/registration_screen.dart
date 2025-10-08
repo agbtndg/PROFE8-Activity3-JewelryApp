@@ -7,6 +7,7 @@ import 'contact_screen.dart';
 import 'screens/add_item_screen.dart';
 import 'screens/cart_screen.dart';
 import 'screens/jewelry_counter_screen.dart';
+import 'screens/provider_demo_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
   @override
@@ -107,6 +108,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               onTap: () {
                 Navigator.pop(context); // Close drawer
                 Navigator.pushNamed(context, '/jewelry_counter');
+              },
+            ),
+            ListTile(
+              title: Text('Provider Demo'),
+              onTap: () {
+                Navigator.pop(context); // Close drawer
+                Navigator.pushNamed(context, '/provider_demo');
               },
             ),
           ],
