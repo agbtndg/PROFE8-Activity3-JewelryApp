@@ -3,6 +3,8 @@ import 'welcome_screen.dart';
 import 'main.dart';
 import 'about_screen.dart';
 import 'contact_screen.dart';
+import 'screens/add_item_screen.dart';
+import 'screens/cart_screen.dart';
 
 class OrderFormScreen extends StatefulWidget {
   @override
@@ -87,6 +89,20 @@ class _OrderFormScreenState extends State<OrderFormScreen> {
               onTap: () {
                 Navigator.pop(context); // Close drawer
                 Navigator.pushNamed(context, '/contact');
+              },
+            ),
+            ListTile(
+              title: Text('Add Item to Cart'),
+              onTap: () {
+                Navigator.pop(context); // Close drawer
+                Navigator.pushNamed(context, '/add_item');
+              },
+            ),
+            ListTile(
+              title: Text('View Cart'),
+              onTap: () {
+                Navigator.pop(context); // Close drawer
+                Navigator.pushNamed(context, '/cart');
               },
             ),
           ],

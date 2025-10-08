@@ -1,4 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:jewel_form/about_screen.dart';
+import 'package:jewel_form/contact_screen.dart';
+import 'package:jewel_form/customization_screen.dart';
+import 'package:jewel_form/demo_push_replacement_screen.dart';
+import 'package:jewel_form/demo_push_screen.dart';
+import 'package:jewel_form/login_screen.dart';
+import 'package:jewel_form/order_form_screen.dart';
+import 'package:jewel_form/registration_screen.dart';
+import 'package:jewel_form/tabbed_jewelry_screen.dart';
+import 'package:jewel_form/tabbed_order_screen.dart';
+import 'package:jewel_form/welcome_screen.dart';
+import 'package:provider/provider.dart';
+import 'providers/cart_provider.dart';
 import 'login_screen.dart';
 import 'customization_screen.dart';
 import 'registration_screen.dart';
@@ -10,9 +23,16 @@ import 'contact_screen.dart';
 import 'demo_push_screen.dart';
 import 'demo_push_replacement_screen.dart';
 import 'tabbed_jewelry_screen.dart';
+import 'screens/add_item_screen.dart';
+import 'screens/cart_screen.dart';
 
 void main() {
-  runApp(JewelForm());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => CartProvider(),
+      child: JewelForm(),
+    ),
+  );
 }
 
 class JewelForm extends StatelessWidget {
@@ -33,6 +53,8 @@ class JewelForm extends StatelessWidget {
         '/demo_push': (context) => DemoPushScreen(),
         '/demo_push_replacement': (context) => DemoPushReplacementScreen(),
         '/tabbed_jewelry': (context) => TabbedJewelryScreen(),
+        '/add_item': (context) => AddItemScreen(),
+        '/cart': (context) => CartScreen(),
       },
     );
   }
@@ -154,6 +176,20 @@ class HomeScreen extends StatelessWidget {
               onTap: () {
                 Navigator.pop(context); // Close drawer
                 Navigator.pushNamed(context, '/contact');
+              },
+            ),
+            ListTile(
+              title: Text('Add Item to Cart'),
+              onTap: () {
+                Navigator.pop(context); // Close drawer
+                Navigator.pushNamed(context, '/add_item');
+              },
+            ),
+            ListTile(
+              title: Text('View Cart'),
+              onTap: () {
+                Navigator.pop(context); // Close drawer
+                Navigator.pushNamed(context, '/cart');
               },
             ),
           ],
@@ -300,6 +336,26 @@ class HomeScreen extends StatelessWidget {
                   Navigator.pushNamed(context, '/tabbed_jewelry');
                 },
                 child: Text('Jewelry Tabs'),
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+                ),
+              ),
+              SizedBox(height: 16.0),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/add_item');
+                },
+                child: Text('Add Item to Cart'),
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+                ),
+              ),
+              SizedBox(height: 16.0),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/cart');
+                },
+                child: Text('View Cart'),
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
                 ),

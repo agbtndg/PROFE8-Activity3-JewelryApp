@@ -4,6 +4,8 @@ import 'main.dart';
 import 'order_form_screen.dart';
 import 'about_screen.dart';
 import 'contact_screen.dart';
+import 'screens/add_item_screen.dart';
+import 'screens/add_item_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
   @override
@@ -83,6 +85,20 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               onTap: () {
                 Navigator.pop(context); // Close drawer
                 Navigator.pushNamed(context, '/contact');
+              },
+            ),
+            ListTile(
+              title: Text('Add Item to Cart'),
+              onTap: () {
+                Navigator.pop(context); // Close drawer
+                Navigator.pushNamed(context, '/add_item');
+              },
+            ),
+            ListTile(
+              title: Text('View Cart'),
+              onTap: () {
+                Navigator.pop(context); // Close drawer
+                Navigator.pushNamed(context, '/cart');
               },
             ),
           ],
