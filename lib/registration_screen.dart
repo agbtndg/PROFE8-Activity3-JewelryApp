@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'welcome_screen.dart';
 import 'main.dart';
 import 'order_form_screen.dart';
@@ -7,7 +8,8 @@ import 'contact_screen.dart';
 import 'screens/add_item_screen.dart';
 import 'screens/cart_screen.dart';
 import 'screens/jewelry_counter_screen.dart';
-import 'screens/provider_demo_screen.dart';
+import 'screens/add_item_screen.dart';
+import 'providers/theme_provider.dart';
 
 class RegistrationScreen extends StatefulWidget {
   @override
@@ -43,6 +45,19 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   color: Colors.white,
                   fontSize: 24,
                 ),
+              ),
+            ),
+            ListTile(
+              title: Text('Toggle Theme'),
+              trailing: Consumer<ThemeProvider>(
+                builder: (context, themeProvider, child) {
+                  return Switch(
+                    value: themeProvider.isDarkMode,
+                    onChanged: (value) {
+                      themeProvider.toggleTheme();
+                    },
+                  );
+                },
               ),
             ),
             ListTile(
@@ -132,7 +147,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   labelText: 'Name',
                   border: OutlineInputBorder(),
                   filled: true,
-                  fillColor: Colors.white,
+                  fillColor: Theme.of(context).brightness == Brightness.dark ? Colors.grey[800] : Colors.white,
                 ),
                 onSaved: (value) {
                   _name = value ?? '';
@@ -150,7 +165,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   labelText: 'Email',
                   border: OutlineInputBorder(),
                   filled: true,
-                  fillColor: Colors.white,
+                  fillColor: Theme.of(context).brightness == Brightness.dark ? Colors.grey[800] : Colors.white,
                 ),
                 keyboardType: TextInputType.emailAddress,
                 onSaved: (value) {
@@ -171,7 +186,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   labelText: 'Password',
                   border: OutlineInputBorder(),
                   filled: true,
-                  fillColor: Colors.white,
+                  fillColor: Theme.of(context).brightness == Brightness.dark ? Colors.grey[800] : Colors.white,
                 ),
                 obscureText: true,
                 onSaved: (value) {
@@ -190,7 +205,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   labelText: 'Confirm Password',
                   border: OutlineInputBorder(),
                   filled: true,
-                  fillColor: Colors.white,
+                  fillColor: Theme.of(context).brightness == Brightness.dark ? Colors.grey[800] : Colors.white,
                 ),
                 obscureText: true,
                 onSaved: (value) {
@@ -211,7 +226,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   labelText: 'Role',
                   border: OutlineInputBorder(),
                   filled: true,
-                  fillColor: Colors.white,
+                  fillColor: Theme.of(context).brightness == Brightness.dark ? Colors.grey[800] : Colors.white,
                 ),
                 value: _role,
                 items: ['Admin', 'Customer'].map((String role) {

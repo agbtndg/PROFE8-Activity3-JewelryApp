@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'welcome_screen.dart';
 import 'main.dart';
 import 'about_screen.dart';
@@ -7,6 +8,7 @@ import 'screens/add_item_screen.dart';
 import 'screens/cart_screen.dart';
 import 'screens/jewelry_counter_screen.dart';
 import 'screens/provider_demo_screen.dart';
+import 'providers/theme_provider.dart';
 
 class OrderFormScreen extends StatefulWidget {
   @override
@@ -47,6 +49,19 @@ class _OrderFormScreenState extends State<OrderFormScreen> {
                   color: Colors.white,
                   fontSize: 24,
                 ),
+              ),
+            ),
+            ListTile(
+              title: Text('Toggle Theme'),
+              trailing: Consumer<ThemeProvider>(
+                builder: (context, themeProvider, child) {
+                  return Switch(
+                    value: themeProvider.isDarkMode,
+                    onChanged: (value) {
+                      themeProvider.toggleTheme();
+                    },
+                  );
+                },
               ),
             ),
             ListTile(
@@ -139,7 +154,7 @@ class _OrderFormScreenState extends State<OrderFormScreen> {
                       labelText: 'Item Name',
                       border: OutlineInputBorder(),
                       filled: true,
-                      fillColor: Colors.white,
+                      fillColor: Theme.of(context).brightness == Brightness.dark ? Colors.grey[800] : Colors.white,
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -155,7 +170,7 @@ class _OrderFormScreenState extends State<OrderFormScreen> {
                       labelText: 'Material (e.g., Gold, Silver)',
                       border: OutlineInputBorder(),
                       filled: true,
-                      fillColor: Colors.white,
+                      fillColor: Theme.of(context).brightness == Brightness.dark ? Colors.grey[800] : Colors.white,
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {

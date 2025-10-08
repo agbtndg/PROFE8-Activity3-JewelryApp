@@ -12,6 +12,7 @@ import 'package:jewel_form/tabbed_order_screen.dart';
 import 'package:jewel_form/welcome_screen.dart';
 import 'package:provider/provider.dart';
 import 'providers/cart_provider.dart';
+import 'providers/theme_provider.dart';
 import 'login_screen.dart';
 import 'customization_screen.dart';
 import 'registration_screen.dart';
@@ -30,8 +31,11 @@ import 'screens/provider_demo_screen.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => CartProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => CartProvider()),
+        ChangeNotifierProvider(create: (context) => ThemeProvider()),
+      ],
       child: JewelForm(),
     ),
   );
@@ -40,25 +44,52 @@ void main() {
 class JewelForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'JewelForm',
-      theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
-        scaffoldBackgroundColor: Colors.grey[100],
-      ),
-      initialRoute: '/login',
-      routes: {
-        '/login': (context) => LoginScreen(),
-        '/home': (context) => MainScreen(),
-        '/about': (context) => AboutScreen(),
-        '/contact': (context) => ContactScreen(),
-        '/demo_push': (context) => DemoPushScreen(),
-        '/demo_push_replacement': (context) => DemoPushReplacementScreen(),
-        '/tabbed_jewelry': (context) => TabbedJewelryScreen(),
-        '/add_item': (context) => AddItemScreen(),
-        '/cart': (context) => CartScreen(),
-        '/jewelry_counter': (context) => JewelryCounterScreen(),
-        '/provider_demo': (context) => ProviderDemoScreen(),
+    return Consumer<ThemeProvider>(
+      builder: (context, themeProvider, child) {
+        return MaterialApp(
+          title: 'JewelForm',
+          theme: ThemeData(
+            primarySwatch: Colors.blueGrey,
+            scaffoldBackgroundColor: Colors.grey[100],
+            textTheme: TextTheme(
+              bodyMedium: TextStyle(color: Colors.black87),
+            ),
+            elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.blueGrey,
+              ),
+            ),
+          ),
+          darkTheme: ThemeData(
+            primarySwatch: Colors.blueGrey,
+            scaffoldBackgroundColor: Colors.grey[900],
+            textTheme: TextTheme(
+              bodyMedium: TextStyle(color: Colors.white70),
+            ),
+            elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.black87,
+                backgroundColor: Colors.blueGrey[300],
+              ),
+            ),
+          ),
+          themeMode: themeProvider.themeMode,
+          initialRoute: '/login',
+          routes: {
+            '/login': (context) => LoginScreen(),
+            '/home': (context) => MainScreen(),
+            '/about': (context) => AboutScreen(),
+            '/contact': (context) => ContactScreen(),
+            '/demo_push': (context) => DemoPushScreen(),
+            '/demo_push_replacement': (context) => DemoPushReplacementScreen(),
+            '/tabbed_jewelry': (context) => TabbedJewelryScreen(),
+            '/add_item': (context) => AddItemScreen(),
+            '/cart': (context) => CartScreen(),
+            '/jewelry_counter': (context) => JewelryCounterScreen(),
+            '/provider_demo': (context) => ProviderDemoScreen(),
+          },
+        );
       },
     );
   }
@@ -136,6 +167,19 @@ class HomeScreen extends StatelessWidget {
                   color: Colors.white,
                   fontSize: 24,
                 ),
+              ),
+            ),
+            ListTile(
+              title: Text('Toggle Theme'),
+              trailing: Consumer<ThemeProvider>(
+                builder: (context, themeProvider, child) {
+                  return Switch(
+                    value: themeProvider.isDarkMode,
+                    onChanged: (value) {
+                      themeProvider.toggleTheme();
+                    },
+                  );
+                },
               ),
             ),
             ListTile(
@@ -218,6 +262,20 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Consumer<ThemeProvider>(
+                builder: (context, themeProvider, child) {
+                  return ElevatedButton(
+                    onPressed: () {
+                      themeProvider.toggleTheme();
+                    },
+                    child: Text(themeProvider.isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'),
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+                    ),
+                  );
+                },
+              ),
+              SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -441,7 +499,7 @@ class _UsernameFormScreenState extends State<UsernameFormScreen> {
                   labelText: 'Username',
                   border: OutlineInputBorder(),
                   filled: true,
-                  fillColor: Colors.white,
+                  fillColor: Theme.of(context).brightness == Brightness.dark ? Colors.grey[800] : Colors.white,
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
