@@ -1,31 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:jewel_form/main.dart';
+import 'package:jewel_form/order_form_screen.dart';
+import 'package:jewel_form/welcome_screen.dart';
 import 'package:provider/provider.dart';
-import 'welcome_screen.dart';
-import 'main.dart';
-import 'about_screen.dart';
-import 'contact_screen.dart';
-import 'screens/add_item_screen.dart';
-import 'screens/cart_screen.dart';
-import 'screens/jewelry_counter_screen.dart';
-import 'provider_demo_screen.dart';
-import 'screens/todo_screen.dart';
-import 'providers/theme_provider.dart';
+import '../providers/todo_provider.dart';
+import '../providers/theme_provider.dart';
+import '../welcome_screen.dart';
+import '../main.dart';
+import '../order_form_screen.dart';
+import '../about_screen.dart';
+import '../contact_screen.dart';
+import 'add_item_screen.dart';
+import 'cart_screen.dart';
+import 'jewelry_counter_screen.dart';
+import '../provider_demo_screen.dart';
 
-class OrderFormScreen extends StatefulWidget {
+class TodoScreen extends StatefulWidget {
   @override
-  _OrderFormScreenState createState() => _OrderFormScreenState();
+  _TodoScreenState createState() => _TodoScreenState();
 }
 
-class _OrderFormScreenState extends State<OrderFormScreen> {
+class _TodoScreenState extends State<TodoScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _itemNameController = TextEditingController();
-  final _materialController = TextEditingController();
-  final List<Map<String, String>> _orders = [];
+  final _taskController = TextEditingController();
 
   @override
   void dispose() {
-    _itemNameController.dispose();
-    _materialController.dispose();
+    _taskController.dispose();
     super.dispose();
   }
 
@@ -33,7 +34,7 @@ class _OrderFormScreenState extends State<OrderFormScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Order Jewelry'),
+        title: Text('To-Do List'),
         centerTitle: true,
       ),
       drawer: Drawer(
@@ -150,63 +151,41 @@ class _OrderFormScreenState extends State<OrderFormScreen> {
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Form(
               key: _formKey,
-              child: Column(
+              child: Row(
                 children: [
-                  TextFormField(
-                    controller: _itemNameController,
-                    decoration: InputDecoration(
-                      labelText: 'Item Name',
-                      border: OutlineInputBorder(),
-                      filled: true,
-                      fillColor: Theme.of(context).brightness == Brightness.dark ? Colors.grey[800] : Colors.white,
+                  Expanded(
+                    child: TextFormField(
+                      controller: _taskController,
+                      decoration: InputDecoration(
+                        labelText: 'New Task (e.g., Design Necklace)',
+                        border: OutlineInputBorder(),
+                        filled: true,
+                        fillColor: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.grey[800]
+                            : Colors.white,
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter a task';
+                        }
+                        return null;
+                      },
                     ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter an item name';
-                      }
-                      return null;
-                    },
                   ),
-                  SizedBox(height: 16.0),
-                  TextFormField(
-                    controller: _materialController,
-                    decoration: InputDecoration(
-                      labelText: 'Material (e.g., Gold, Silver)',
-                      border: OutlineInputBorder(),
-                      filled: true,
-                      fillColor: Theme.of(context).brightness == Brightness.dark ? Colors.grey[800] : Colors.white,
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter a material';
-                      }
-                      return null;
-                    },
-                  ),
-                  SizedBox(height: 16.0),
+                  SizedBox(width: 8.0),
                   ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        setState(() {
-                          _orders.add({
-                            'itemName': _itemNameController.text,
-                            'material': _materialController.text,
-                          });
-                          _itemNameController.clear();
-                          _materialController.clear();
-                        });
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Order added')),
-                        );
+                        context.read<TodoProvider>().addTodo(_taskController.text);
+                        _taskController.clear();
                       }
                     },
-                    child: Text('Submit'),
+                    child: Text('Add'),
                     style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(vertical: 12.0),
+                      padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
                     ),
                   ),
                 ],
@@ -214,17 +193,40 @@ class _OrderFormScreenState extends State<OrderFormScreen> {
             ),
             SizedBox(height: 16.0),
             Expanded(
-              child: _orders.isEmpty
-                  ? Center(child: Text('No orders yet'))
-                  : ListView.builder(
-                      itemCount: _orders.length,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          title: Text('Item: ${_orders[index]['itemName']}'),
-                          subtitle: Text('Material: ${_orders[index]['material']}'),
+              child: Consumer<TodoProvider>(
+                builder: (context, todoProvider, child) {
+                  return todoProvider.todos.isEmpty
+                      ? Center(child: Text('No tasks yet'))
+                      : ListView.builder(
+                          itemCount: todoProvider.todos.length,
+                          itemBuilder: (context, index) {
+                            final todo = todoProvider.todos[index];
+                            return ListTile(
+                              leading: Checkbox(
+                                value: todo.isCompleted,
+                                onChanged: (value) {
+                                  todoProvider.toggleTodoStatus(index);
+                                },
+                              ),
+                              title: Text(
+                                todo.title,
+                                style: TextStyle(
+                                  decoration: todo.isCompleted
+                                      ? TextDecoration.lineThrough
+                                      : TextDecoration.none,
+                                ),
+                              ),
+                              trailing: IconButton(
+                                icon: Icon(Icons.delete),
+                                onPressed: () {
+                                  todoProvider.deleteTodo(index);
+                                },
+                              ),
+                            );
+                          },
                         );
-                      },
-                    ),
+                },
+              ),
             ),
           ],
         ),

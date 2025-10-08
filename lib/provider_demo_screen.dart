@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:jewel_form/main.dart';
-import 'package:jewel_form/order_form_screen.dart';
-import 'package:jewel_form/welcome_screen.dart';
 import 'package:provider/provider.dart';
 import '../providers/cart_provider.dart';
 import '../providers/theme_provider.dart';
-import '../welcome_screen.dart';
-import '../main.dart';
-import '../order_form_screen.dart';
-import '../about_screen.dart';
-import '../contact_screen.dart';
-import 'add_item_screen.dart';
-import 'cart_screen.dart';
-import 'jewelry_counter_screen.dart';
+import 'welcome_screen.dart';
+import 'main.dart';
+import 'order_form_screen.dart';
+import 'about_screen.dart';
+import 'contact_screen.dart';
+import 'screens/add_item_screen.dart';
+import 'screens/cart_screen.dart';
+import 'screens/jewelry_counter_screen.dart';
+import 'screens/todo_screen.dart';
 
 class ProviderDemoScreen extends StatelessWidget {
   @override
@@ -54,7 +52,7 @@ class ProviderDemoScreen extends StatelessWidget {
             ListTile(
               title: Text('Welcome'),
               onTap: () {
-                Navigator.pop(context); // Close drawer
+                Navigator.pop(context);
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => WelcomeScreen()),
@@ -64,7 +62,7 @@ class ProviderDemoScreen extends StatelessWidget {
             ListTile(
               title: Text('Username Form'),
               onTap: () {
-                Navigator.pop(context); // Close drawer
+                Navigator.pop(context);
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => UsernameFormScreen()),
@@ -74,7 +72,7 @@ class ProviderDemoScreen extends StatelessWidget {
             ListTile(
               title: Text('Order Form'),
               onTap: () {
-                Navigator.pop(context); // Close drawer
+                Navigator.pop(context);
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => OrderFormScreen()),
@@ -84,43 +82,50 @@ class ProviderDemoScreen extends StatelessWidget {
             ListTile(
               title: Text('About'),
               onTap: () {
-                Navigator.pop(context); // Close drawer
+                Navigator.pop(context);
                 Navigator.pushNamed(context, '/about');
               },
             ),
             ListTile(
               title: Text('Contact'),
               onTap: () {
-                Navigator.pop(context); // Close drawer
+                Navigator.pop(context);
                 Navigator.pushNamed(context, '/contact');
               },
             ),
             ListTile(
               title: Text('Add Item to Cart'),
               onTap: () {
-                Navigator.pop(context); // Close drawer
+                Navigator.pop(context);
                 Navigator.pushNamed(context, '/add_item');
               },
             ),
             ListTile(
               title: Text('View Cart'),
               onTap: () {
-                Navigator.pop(context); // Close drawer
+                Navigator.pop(context);
                 Navigator.pushNamed(context, '/cart');
               },
             ),
             ListTile(
               title: Text('Jewelry Counter'),
               onTap: () {
-                Navigator.pop(context); // Close drawer
+                Navigator.pop(context);
                 Navigator.pushNamed(context, '/jewelry_counter');
               },
             ),
             ListTile(
               title: Text('Provider Demo'),
               onTap: () {
-                Navigator.pop(context); // Close drawer
+                Navigator.pop(context);
                 Navigator.pushNamed(context, '/provider_demo');
+              },
+            ),
+            ListTile(
+              title: Text('To-Do List'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/todo');
               },
             ),
           ],

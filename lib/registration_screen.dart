@@ -8,7 +8,8 @@ import 'contact_screen.dart';
 import 'screens/add_item_screen.dart';
 import 'screens/cart_screen.dart';
 import 'screens/jewelry_counter_screen.dart';
-import 'screens/add_item_screen.dart';
+import 'provider_demo_screen.dart';
+import 'screens/todo_screen.dart';
 import 'providers/theme_provider.dart';
 
 class RegistrationScreen extends StatefulWidget {
@@ -63,7 +64,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ListTile(
               title: Text('Welcome'),
               onTap: () {
-                Navigator.pop(context); // Close drawer
+                Navigator.pop(context);
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => WelcomeScreen()),
@@ -73,7 +74,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ListTile(
               title: Text('Username Form'),
               onTap: () {
-                Navigator.pop(context); // Close drawer
+                Navigator.pop(context);
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => UsernameFormScreen()),
@@ -83,7 +84,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ListTile(
               title: Text('Order Form'),
               onTap: () {
-                Navigator.pop(context); // Close drawer
+                Navigator.pop(context);
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => OrderFormScreen()),
@@ -93,43 +94,50 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ListTile(
               title: Text('About'),
               onTap: () {
-                Navigator.pop(context); // Close drawer
+                Navigator.pop(context);
                 Navigator.pushNamed(context, '/about');
               },
             ),
             ListTile(
               title: Text('Contact'),
               onTap: () {
-                Navigator.pop(context); // Close drawer
+                Navigator.pop(context);
                 Navigator.pushNamed(context, '/contact');
               },
             ),
             ListTile(
               title: Text('Add Item to Cart'),
               onTap: () {
-                Navigator.pop(context); // Close drawer
+                Navigator.pop(context);
                 Navigator.pushNamed(context, '/add_item');
               },
             ),
             ListTile(
               title: Text('View Cart'),
               onTap: () {
-                Navigator.pop(context); // Close drawer
+                Navigator.pop(context);
                 Navigator.pushNamed(context, '/cart');
               },
             ),
             ListTile(
               title: Text('Jewelry Counter'),
               onTap: () {
-                Navigator.pop(context); // Close drawer
+                Navigator.pop(context);
                 Navigator.pushNamed(context, '/jewelry_counter');
               },
             ),
             ListTile(
               title: Text('Provider Demo'),
               onTap: () {
-                Navigator.pop(context); // Close drawer
+                Navigator.pop(context);
                 Navigator.pushNamed(context, '/provider_demo');
+              },
+            ),
+            ListTile(
+              title: Text('To-Do List'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/todo');
               },
             ),
           ],
