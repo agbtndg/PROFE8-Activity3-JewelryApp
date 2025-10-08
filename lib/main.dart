@@ -31,6 +31,7 @@ import 'screens/cart_screen.dart';
 import 'screens/jewelry_counter_screen.dart';
 import 'provider_demo_screen.dart';
 import 'screens/todo_screen.dart';
+import 'screens/video_player_screen.dart';
 
 void main() {
   runApp(
@@ -93,6 +94,7 @@ class JewelForm extends StatelessWidget {
             '/jewelry_counter': (context) => JewelryCounterScreen(),
             '/provider_demo': (context) => ProviderDemoScreen(),
             '/todo': (context) => TodoScreen(),
+            '/video_player': (context) => VideoPlayerScreen(),
           },
         );
       },
@@ -264,6 +266,13 @@ class HomeScreen extends StatelessWidget {
               onTap: () {
                 Navigator.pop(context);
                 Navigator.pushNamed(context, '/todo');
+              },
+            ),
+            ListTile(
+              title: Text('Video Player'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/video_player');
               },
             ),
           ],
@@ -504,6 +513,16 @@ class HomeScreen extends StatelessWidget {
                   Navigator.pushNamed(context, '/todo');
                 },
                 child: Text('To-Do List'),
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+                ),
+              ),
+              SizedBox(height: 16.0),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/video_player');
+                },
+                child: Text('Video Player'),
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
                 ),
