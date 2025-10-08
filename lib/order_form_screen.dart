@@ -5,6 +5,7 @@ import 'about_screen.dart';
 import 'contact_screen.dart';
 import 'screens/add_item_screen.dart';
 import 'screens/cart_screen.dart';
+import 'screens/jewelry_counter_screen.dart';
 
 class OrderFormScreen extends StatefulWidget {
   @override
@@ -103,6 +104,13 @@ class _OrderFormScreenState extends State<OrderFormScreen> {
               onTap: () {
                 Navigator.pop(context); // Close drawer
                 Navigator.pushNamed(context, '/cart');
+              },
+            ),
+            ListTile(
+              title: Text('Jewelry Counter'),
+              onTap: () {
+                Navigator.pop(context); // Close drawer
+                Navigator.pushNamed(context, '/jewelry_counter');
               },
             ),
           ],

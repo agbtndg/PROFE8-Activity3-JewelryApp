@@ -25,6 +25,7 @@ import 'demo_push_replacement_screen.dart';
 import 'tabbed_jewelry_screen.dart';
 import 'screens/add_item_screen.dart';
 import 'screens/cart_screen.dart';
+import 'screens/jewelry_counter_screen.dart';
 
 void main() {
   runApp(
@@ -55,6 +56,7 @@ class JewelForm extends StatelessWidget {
         '/tabbed_jewelry': (context) => TabbedJewelryScreen(),
         '/add_item': (context) => AddItemScreen(),
         '/cart': (context) => CartScreen(),
+        '/jewelry_counter': (context) => JewelryCounterScreen(),
       },
     );
   }
@@ -190,6 +192,13 @@ class HomeScreen extends StatelessWidget {
               onTap: () {
                 Navigator.pop(context); // Close drawer
                 Navigator.pushNamed(context, '/cart');
+              },
+            ),
+            ListTile(
+              title: Text('Jewelry Counter'),
+              onTap: () {
+                Navigator.pop(context); // Close drawer
+                Navigator.pushNamed(context, '/jewelry_counter');
               },
             ),
           ],
@@ -356,6 +365,16 @@ class HomeScreen extends StatelessWidget {
                   Navigator.pushNamed(context, '/cart');
                 },
                 child: Text('View Cart'),
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+                ),
+              ),
+              SizedBox(height: 16.0),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/jewelry_counter');
+                },
+                child: Text('Jewelry Counter'),
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
                 ),
