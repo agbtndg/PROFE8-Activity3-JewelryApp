@@ -37,6 +37,7 @@ import 'screens/icon_display_screen.dart';
 import 'screens/custom_icon_screen.dart';
 import 'screens/custom_font_screen.dart';
 import 'screens/profile_card_screen.dart';
+import 'screens/media_player_screen.dart';
 
 void main() {
   runApp(
@@ -109,6 +110,7 @@ class JewelForm extends StatelessWidget {
             '/custom_icon': (context) => CustomIconScreen(),
             '/custom_font': (context) => CustomFontScreen(),
             '/profile_card': (context) => ProfileCardScreen(),
+            '/media_player': (context) => MediaPlayerScreen(),
           },
         );
       },
@@ -322,6 +324,13 @@ class HomeScreen extends StatelessWidget {
               onTap: () {
                 Navigator.pop(context);
                 Navigator.pushNamed(context, '/profile_card');
+              },
+            ),
+            ListTile(
+              title: Text('Media Player'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/media_player');
               },
             ),
           ],
@@ -622,6 +631,16 @@ class HomeScreen extends StatelessWidget {
                   Navigator.pushNamed(context, '/profile_card');
                 },
                 child: Text('Profile Card'),
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+                ),
+              ),
+              SizedBox(height: 16.0),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/media_player');
+                },
+                child: Text('Media Player'),
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
                 ),
