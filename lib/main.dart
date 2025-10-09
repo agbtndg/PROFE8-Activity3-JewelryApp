@@ -32,6 +32,7 @@ import 'screens/jewelry_counter_screen.dart';
 import 'provider_demo_screen.dart';
 import 'screens/todo_screen.dart';
 import 'screens/video_player_screen.dart';
+import 'screens/audio_player_screen.dart';
 
 void main() {
   runApp(
@@ -95,6 +96,7 @@ class JewelForm extends StatelessWidget {
             '/provider_demo': (context) => ProviderDemoScreen(),
             '/todo': (context) => TodoScreen(),
             '/video_player': (context) => VideoPlayerScreen(),
+            '/audio_player': (context) => AudioPlayerScreen(),
           },
         );
       },
@@ -273,6 +275,13 @@ class HomeScreen extends StatelessWidget {
               onTap: () {
                 Navigator.pop(context);
                 Navigator.pushNamed(context, '/video_player');
+              },
+            ),
+            ListTile(
+              title: Text('Audio Player'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/audio_player');
               },
             ),
           ],
@@ -523,6 +532,16 @@ class HomeScreen extends StatelessWidget {
                   Navigator.pushNamed(context, '/video_player');
                 },
                 child: Text('Video Player'),
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+                ),
+              ),
+              SizedBox(height: 16.0),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/audio_player');
+                },
+                child: Text('Audio Player'),
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
                 ),
