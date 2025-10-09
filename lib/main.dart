@@ -34,6 +34,7 @@ import 'screens/todo_screen.dart';
 import 'screens/video_player_screen.dart';
 import 'screens/audio_player_screen.dart';
 import 'screens/icon_display_screen.dart';
+import 'screens/custom_icon_screen.dart';
 
 void main() {
   runApp(
@@ -99,6 +100,7 @@ class JewelForm extends StatelessWidget {
             '/video_player': (context) => VideoPlayerScreen(),
             '/audio_player': (context) => AudioPlayerScreen(),
             '/icon_display': (context) => IconDisplayScreen(),
+            '/custom_icon': (context) => CustomIconScreen(),
           },
         );
       },
@@ -291,6 +293,13 @@ class HomeScreen extends StatelessWidget {
               onTap: () {
                 Navigator.pop(context);
                 Navigator.pushNamed(context, '/icon_display');
+              },
+            ),
+            ListTile(
+              title: Text('Custom Icons'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/custom_icon');
               },
             ),
           ],
@@ -561,6 +570,16 @@ class HomeScreen extends StatelessWidget {
                   Navigator.pushNamed(context, '/icon_display');
                 },
                 child: Text('Icon Display'),
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+                ),
+              ),
+              SizedBox(height: 16.0),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/custom_icon');
+                },
+                child: Text('Custom Icons'),
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
                 ),
