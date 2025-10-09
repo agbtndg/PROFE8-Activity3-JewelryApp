@@ -59,8 +59,10 @@ class JewelForm extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blueGrey,
             scaffoldBackgroundColor: Colors.grey[100],
+            fontFamily: 'Poppins',
             textTheme: TextTheme(
               bodyMedium: TextStyle(color: Colors.black87),
+              headlineSmall: TextStyle(fontWeight: FontWeight.bold),
             ),
             elevatedButtonTheme: ElevatedButtonThemeData(
               style: ElevatedButton.styleFrom(
@@ -72,8 +74,10 @@ class JewelForm extends StatelessWidget {
           darkTheme: ThemeData(
             primarySwatch: Colors.blueGrey,
             scaffoldBackgroundColor: Colors.grey[900],
+            fontFamily: 'Poppins',
             textTheme: TextTheme(
               bodyMedium: TextStyle(color: Colors.white70),
+              headlineSmall: TextStyle(fontWeight: FontWeight.bold),
             ),
             elevatedButtonTheme: ElevatedButtonThemeData(
               style: ElevatedButton.styleFrom(
