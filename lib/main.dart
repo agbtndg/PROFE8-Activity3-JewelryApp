@@ -33,6 +33,7 @@ import 'provider_demo_screen.dart';
 import 'screens/todo_screen.dart';
 import 'screens/video_player_screen.dart';
 import 'screens/audio_player_screen.dart';
+import 'screens/icon_display_screen.dart';
 
 void main() {
   runApp(
@@ -97,6 +98,7 @@ class JewelForm extends StatelessWidget {
             '/todo': (context) => TodoScreen(),
             '/video_player': (context) => VideoPlayerScreen(),
             '/audio_player': (context) => AudioPlayerScreen(),
+            '/icon_display': (context) => IconDisplayScreen(),
           },
         );
       },
@@ -282,6 +284,13 @@ class HomeScreen extends StatelessWidget {
               onTap: () {
                 Navigator.pop(context);
                 Navigator.pushNamed(context, '/audio_player');
+              },
+            ),
+            ListTile(
+              title: Text('Icon Display'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/icon_display');
               },
             ),
           ],
@@ -542,6 +551,16 @@ class HomeScreen extends StatelessWidget {
                   Navigator.pushNamed(context, '/audio_player');
                 },
                 child: Text('Audio Player'),
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+                ),
+              ),
+              SizedBox(height: 16.0),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/icon_display');
+                },
+                child: Text('Icon Display'),
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
                 ),
