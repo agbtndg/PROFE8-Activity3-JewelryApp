@@ -16,6 +16,7 @@ dependencies:
   audioplayers: ^5.2.1
   flutter_iconpicker: ^3.2.4
   font_awesome_flutter: ^10.4.0
+  carousel_slider: ^5.0.0
 
   
   cupertino_icons: ^1.0.8
